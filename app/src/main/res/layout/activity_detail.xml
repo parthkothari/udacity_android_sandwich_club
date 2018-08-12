@@ -32,6 +32,7 @@
 
 
                 <TextView
+                    android:id="@+id/also_known_label_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/detail_also_known_as_label"

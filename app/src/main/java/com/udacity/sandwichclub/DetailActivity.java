@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,12 +53,24 @@ public class DetailActivity extends AppCompatActivity {
         populateUI();
         Picasso.with(this)
                 .load(sandwich.getImage())
+                .error(R.drawable.no_image_available)
                 .into(ingredientsIv);
 
         setTitle(sandwich.getMainName());
         alsoKnownTextview.setText(TextUtils.join(", ", sandwich.getAlsoKnownAs()));
         descriptionTextView.setText(sandwich.getDescription());
         originTextView.setText((sandwich.getPlaceOfOrigin()));
+
+        // If not known by any other names, hide the fields
+        if (alsoKnownTextview.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()){
+            alsoKnownTextview.setVisibility(View.GONE);
+            findViewById(R.id.also_known_label_tv).setVisibility(View.GONE);
+        }
+
+        // If country of origin is not known, display unknown
+        if (originTextView.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()){
+            originTextView.setText("It's a mystery!");
+        }
 
         // Show ingredients as a bullet list
         StringBuilder ingredientsBuilder = new StringBuilder();
