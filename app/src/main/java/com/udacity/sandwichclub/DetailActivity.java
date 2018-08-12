@@ -58,8 +58,14 @@ public class DetailActivity extends AppCompatActivity {
         alsoKnownTextview.setText(TextUtils.join(", ", sandwich.getAlsoKnownAs()));
         descriptionTextView.setText(sandwich.getDescription());
         originTextView.setText((sandwich.getPlaceOfOrigin()));
-        ingredientsTextView.setText(sandwich.getIngredients().toString());
 
+        // Show ingredients as a bullet list
+        StringBuilder ingredientsBuilder = new StringBuilder();
+        for (String ingredient : sandwich.getIngredients()){
+            ingredientsBuilder.append("• " + ingredient + "\n");
+        }
+        ingredientsBuilder.setLength(ingredientsBuilder.length()-1);
+        ingredientsTextView.setText(ingredientsBuilder);
     }
 
     private void closeOnError() {
