@@ -62,22 +62,22 @@ public class DetailActivity extends AppCompatActivity {
         originTextView.setText((sandwich.getPlaceOfOrigin()));
 
         // If not known by any other names, hide the fields
-        if (alsoKnownTextview.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()){
+        if (alsoKnownTextview.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()) {
             alsoKnownTextview.setVisibility(View.GONE);
             findViewById(R.id.also_known_label_tv).setVisibility(View.GONE);
         }
 
         // If country of origin is not known, display unknown
-        if (originTextView.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()){
+        if (originTextView.getText().toString() == null || alsoKnownTextview.getText().toString().isEmpty()) {
             originTextView.setText("It's a mystery!");
         }
 
         // Show ingredients as a bullet list
         StringBuilder ingredientsBuilder = new StringBuilder();
-        for (String ingredient : sandwich.getIngredients()){
+        for (String ingredient : sandwich.getIngredients()) {
             ingredientsBuilder.append("• " + ingredient + "\n");
         }
-        ingredientsBuilder.setLength(ingredientsBuilder.length()-1);
+        ingredientsBuilder.setLength(ingredientsBuilder.length() - 1);
         ingredientsTextView.setText(ingredientsBuilder);
     }
 
